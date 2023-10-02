@@ -22,5 +22,10 @@ public class Telefone {
     public Telefone(int telefone) {
         this.telefone = telefone;
     }
+    @Override
+    public String toString() {
+        return "Telefone: " + telefone;
+    }
+    
     
 }

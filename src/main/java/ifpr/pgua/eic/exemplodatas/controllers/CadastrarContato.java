@@ -1,7 +1,9 @@
 package ifpr.pgua.eic.exemplodatas.controllers;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.github.hugoperlin.results.Resultado;
 
@@ -16,7 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
-public class CadastrarContato {
+public class CadastrarContato{
     @FXML
     private TextField tfNome;
 
@@ -69,25 +71,39 @@ public class CadastrarContato {
     void adicionarEmail(ActionEvent event){
         String endereco=tfEmail.getText();
         Email email=new Email(endereco);
+
         emails.add(email);
+
         tfEmail.clear();
+
         Alert alert=new Alert(AlertType.INFORMATION, "E-mail adicionado!");
         alert.showAndWait();
+
+        lstEmails.getItems().clear();
+        lstEmails.getItems().addAll(emails);
         System.out.println(emails.size());
     }
     @FXML
     void adicionarTelefone(ActionEvent event){
+
         String sTelefone=tfTelefone.getText();
         int numero=Integer.valueOf(sTelefone);
         Telefone telefone=new Telefone(numero);
+
         telefones.add(telefone);
+
         tfTelefone.clear();
+
         Alert alert=new Alert(AlertType.INFORMATION, "Telefone adicionado!");
         alert.showAndWait();
+
+        lstTelefones.getItems().clear();
+        lstTelefones.getItems().addAll(telefones);
         System.out.println(telefones.size());
     }
     @FXML
     void voltar(){
         App.popScreen();
     }
+
 }

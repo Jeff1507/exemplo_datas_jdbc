@@ -34,6 +34,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -43,15 +44,17 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="Nome" />
-            <TextField fx:id="tfNome" layoutX="15.0" layoutY="32.0" prefHeight="26.0" prefWidth="434.0" />
+            <TextField fx:id="tfNome" layoutX="15.0" layoutY="32.0" prefHeight="26.0" prefWidth="327.0" />
             <Label layoutX="16.0" layoutY="74.0" text="E-mail" />
-            <TextField fx:id="tfEmail" layoutX="15.0" layoutY="92.0" prefHeight="26.0" prefWidth="434.0" />
-            <Label layoutX="16.0" layoutY="134.0" text="Telefone" />
-            <TextField fx:id="tfTelefone" layoutX="16.0" layoutY="152.0" prefHeight="26.0" prefWidth="434.0" />
-            <Button layoutX="21.0" layoutY="200.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
-            <Button layoutX="89.0" layoutY="200.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
-            <Button layoutX="475.0" layoutY="92.0" mnemonicParsing="false" onAction="#adicionarEmail" prefHeight="26.0" prefWidth="115.0" text="Adicionar E-mail" />
-            <Button layoutX="475.0" layoutY="152.0" mnemonicParsing="false" onAction="#adicionarTelefone" text="Adicionar Telefone" />
+            <TextField fx:id="tfEmail" layoutX="15.0" layoutY="92.0" prefHeight="26.0" prefWidth="327.0" />
+            <Label layoutX="16.0" layoutY="169.0" text="Telefone" />
+            <TextField fx:id="tfTelefone" layoutX="15.0" layoutY="187.0" prefHeight="26.0" prefWidth="327.0" />
+            <Button layoutX="15.0" layoutY="274.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
+            <Button layoutX="90.0" layoutY="274.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+            <Button layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#adicionarEmail" prefHeight="26.0" prefWidth="115.0" text="Adicionar E-mail" />
+            <Button layoutX="14.0" layoutY="223.0" mnemonicParsing="false" onAction="#adicionarTelefone" text="Adicionar Telefone" />
+            <ListView fx:id="lstTelefones" layoutX="359.0" layoutY="195.0" prefHeight="107.0" prefWidth="200.0" />
+            <ListView fx:id="lstEmails" layoutX="359.0" layoutY="84.0" prefHeight="107.0" prefWidth="200.0" />
          </children>
     </AnchorPane>
   </children>
