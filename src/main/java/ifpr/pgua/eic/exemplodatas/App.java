@@ -1,9 +1,10 @@
 package ifpr.pgua.eic.exemplodatas;
 
+import ifpr.pgua.eic.exemplodatas.controllers.CadastrarContato;
 import ifpr.pgua.eic.exemplodatas.controllers.Principal;
-import ifpr.pgua.eic.exemplodatas.model.daos.ExemploDAO;
+import ifpr.pgua.eic.exemplodatas.model.daos.ContatoDAO;
 import ifpr.pgua.eic.exemplodatas.model.daos.FabricaConexoes;
-import ifpr.pgua.eic.exemplodatas.model.daos.JDBCExemploDAO;
+import ifpr.pgua.eic.exemplodatas.model.daos.JDBCContatoDAO;
 import ifpr.pgua.eic.exemplodatas.model.repositories.Repositorio;
 import io.github.hugoperlin.navigatorfx.BaseAppNavigator;
 import io.github.hugoperlin.navigatorfx.ScreenRegistryFXML;
@@ -13,7 +14,7 @@ import io.github.hugoperlin.navigatorfx.ScreenRegistryFXML;
  */
 public class App extends BaseAppNavigator {
 
-    private ExemploDAO dao = new JDBCExemploDAO(FabricaConexoes.getInstance());
+    private ContatoDAO dao = new JDBCContatoDAO(FabricaConexoes.getInstance());
     private Repositorio repositorio = new Repositorio(dao);
     
     public static void main(String[] args) {
@@ -30,12 +31,13 @@ public class App extends BaseAppNavigator {
     @Override
     public String getAppTitle() {
         // TODO Auto-generated method stub
-        return "Exemplo de datas";
+        return "Agenda de Contatos";
     }
 
     @Override
     public void registrarTelas() {
-        registraTela("PRINCIPAL", new ScreenRegistryFXML(App.class, "principal.fxml", o->new Principal(repositorio)));
+        registraTela("PRINCIPAL", new ScreenRegistryFXML(App.class, "principal.fxml", o->new Principal()));
+        registraTela("CADASTRARCONTATO", new ScreenRegistryFXML(App.class, "cadastrar_contato.fxml", o->new CadastrarContato(repositorio)));
     }
 
 }

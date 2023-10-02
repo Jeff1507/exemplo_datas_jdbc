@@ -1,32 +1,43 @@
 package ifpr.pgua.eic.exemplodatas.model.repositories;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.github.hugoperlin.results.Resultado;
 
-import ifpr.pgua.eic.exemplodatas.model.daos.ExemploDAO;
-import ifpr.pgua.eic.exemplodatas.model.entities.Exemplo;
+import ifpr.pgua.eic.exemplodatas.model.daos.ContatoDAO;
+import ifpr.pgua.eic.exemplodatas.model.entities.Contato;
+import ifpr.pgua.eic.exemplodatas.model.entities.Email;
+import ifpr.pgua.eic.exemplodatas.model.entities.Telefone;
 
 public class Repositorio {
     
 
-    private ExemploDAO dao;
+    private ContatoDAO dao;
 
-    public Repositorio(ExemploDAO dao) {
+    public Repositorio(ContatoDAO dao) {
         this.dao = dao;
     }
 
-    public Resultado criar(LocalDate data){
-        if(data.isBefore(LocalDate.now())){
-            return Resultado.erro("Data inválida!");
+    public Resultado criar(String nome, ArrayList<Email> emails, ArrayList<Telefone> telefones){
+        if(nome.isBlank() || nome.isEmpty()){
+            return Resultado.erro("Nome em branco!");
         }
+        if(emails.size()==0){
+            return Resultado.erro("Nenhum E-mail cadastrado!");
+        }
+        if(telefones.size()==0){
+            return Resultado.erro("Nenhum telefone cadastrado!");
+        }
+        Contato contato=new Contato(nome);
+        contato.setEmails(emails);
+        contato.setTelefones(telefones);
 
-        Exemplo exemplo = new Exemplo(data);
-
-        return dao.criar(exemplo);
+        return dao.criar(contato);
     }
 
     public Resultado lista(){
-        return dao.listar();
+        return dao.buscar();
     }
 }
