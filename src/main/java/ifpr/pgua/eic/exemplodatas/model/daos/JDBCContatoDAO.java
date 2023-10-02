@@ -61,8 +61,23 @@ public class JDBCContatoDAO implements ContatoDAO{
 
     @Override
     public Resultado buscar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscar'");
+        try (Connection con=fabrica.getConnection()) {
+            PreparedStatement pstm=con.prepareStatement("SELECT * FROM C_agenda");
+
+            ResultSet rs=pstm.executeQuery();
+            List<Contato> lista=new ArrayList<>();
+            while(rs.next()){
+                int codigo=rs.getInt("codigo");
+                String nome=rs.getString("nome");
+
+                Contato contato=new Contato(codigo, nome);
+                lista.add(contato);
+
+            }
+            return Resultado.sucesso("Lista Carregada", lista);
+        } catch (SQLException e) {
+            return Resultado.erro(e.getMessage());
+        }
     }
 
     @Override

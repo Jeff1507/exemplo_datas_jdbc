@@ -37,7 +37,7 @@ public class Repositorio {
         return dao.criar(contato);
     }
 
-    public Resultado lista(){
+    public Resultado listar(){
         return dao.buscar();
     }
 }

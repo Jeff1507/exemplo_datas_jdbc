@@ -39,7 +39,10 @@ public class Contato {
     public void setEmails(List<Email> emails) {
         this.emails = emails;
     }
-
+    @Override
+    public String toString() {
+        return "Contato " + codigo + ", Nome = " + nome;
+    }
     
 
 }

@@ -1,6 +1,7 @@
 package ifpr.pgua.eic.exemplodatas;
 
 import ifpr.pgua.eic.exemplodatas.controllers.CadastrarContato;
+import ifpr.pgua.eic.exemplodatas.controllers.Listar;
 import ifpr.pgua.eic.exemplodatas.controllers.Principal;
 import ifpr.pgua.eic.exemplodatas.model.daos.ContatoDAO;
 import ifpr.pgua.eic.exemplodatas.model.daos.FabricaConexoes;
@@ -37,7 +38,9 @@ public class App extends BaseAppNavigator {
     @Override
     public void registrarTelas() {
         registraTela("PRINCIPAL", new ScreenRegistryFXML(App.class, "principal.fxml", o->new Principal()));
-        registraTela("CADASTRARCONTATO", new ScreenRegistryFXML(App.class, "cadastrar_contato.fxml", o->new CadastrarContato(repositorio)));
+        registraTela("CADASTRARCONTATO", new ScreenRegistryFXML(App.class, "cadastrar_contato.fxml", 
+        o->new CadastrarContato(repositorio)));
+        registraTela("LISTAR", new ScreenRegistryFXML(App.class, "listar.fxml", o->new Listar(repositorio)));
     }
 
 }
