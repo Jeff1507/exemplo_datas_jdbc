@@ -27,6 +27,10 @@ public class Alterar {
     public Alterar(){
         this.repositorio=repositorio;
     }
+    @FXML
+    void alterar(){
+        
+    }
 
     
 }
