@@ -40,4 +40,12 @@ public class Repositorio {
     public Resultado listar(){
         return dao.buscar();
     }
+
+    public String alterar(int id, String nome){
+        Contato novo=new Contato(id, nome);
+
+        Resultado resultado = dao.alterar(id, novo);
+
+        return resultado.getMsg();
+    }
 }

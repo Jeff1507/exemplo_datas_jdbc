@@ -1,13 +1,10 @@
 package ifpr.pgua.eic.exemplodatas.model.daos;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,9 +78,39 @@ public class JDBCContatoDAO implements ContatoDAO{
     }
 
     @Override
-    public Resultado alterar(int id, Contato novaAgenda) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'alterar'");
+    public Resultado alterar(int id, Contato novoContato) {
+        try (Connection con=fabrica.getConnection()) {
+            PreparedStatement pstm=con.prepareStatement("UPDATE C_agenda SET nome=? WHERE codigo=?");
+            pstm.setString(1, novoContato.getNome());
+            pstm.setInt(2, id);
+
+            int ret=pstm.executeUpdate();
+
+            if(ret==1){
+                PreparedStatement pstm2=con.prepareStatement("UPDATE C_email SET email=? WHERE codigo=?");
+                ArrayList<Email> lista=new ArrayList<>(novoContato.getEmails());
+                for (Email emails : lista) {
+                    pstm2.setString(1, emails.getEmail());
+                    pstm2.setInt(2, id);
+                    pstm2.executeUpdate();
+                }
+                novoContato.setEmails(lista);
+
+                PreparedStatement pstm3=con.prepareStatement("UPDATE C_telefone SET telefone=? WHERE codigo=?");
+                ArrayList<Telefone> lista2=new ArrayList<>(novoContato.getTelefones());
+                for (Telefone telefones : novoContato.getTelefones()) {
+                    pstm3.setInt(1, telefones.getTelefone());
+                    pstm3.setInt(2, id);
+                    pstm3.executeUpdate();
+                }
+                novoContato.setTelefones(lista2);
+                
+                return Resultado.sucesso("Contato atualizado", novoContato);
+            }
+            return Resultado.erro("Erro não identificado!");
+        } catch (SQLException e) {
+            return Resultado.erro(e.getMessage());
+        }
     }
 
     @Override
